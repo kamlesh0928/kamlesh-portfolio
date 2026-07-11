@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { IconChevronUp } from "./icons";
-import { NAV_LINKS } from "./Navbar";
 
-export function Footer() {
+export default function Footer() {
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -14,115 +13,51 @@ export function Footer() {
   }, []);
 
   return (
-    <footer
-      style={{
-        padding: "48px 24px",
-        borderTop: "1px solid var(--border-subtle)",
-        position: "relative",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "24px",
-        }}
+    <>
+      <footer
+        style={{ padding: "40px 0 48px", position: "relative", zIndex: 1 }}
       >
-        <a
-          href="#home"
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: 800,
-            textDecoration: "none",
-          }}
-          className="gradient-text-static"
-        >
-          Kamlesh Prajapati
-        </a>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "24px",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
+        <div className="shell">
+          <div
+            style={{
+              borderTop: "1px solid var(--border-subtle)",
+              paddingTop: "32px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "16px",
+            }}
+          >
+            <span
               style={{
-                color: "var(--text-muted)",
-                textDecoration: "none",
-                fontSize: "0.875rem",
-                transition: "color 0.3s",
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: "1rem",
+                color: "var(--text-primary)",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#fbbf24")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#666")}
             >
-              {link.label}
-            </a>
-          ))}
+              Kamlesh Prajapati
+            </span>
+            <span className="footer-tagline" style={{ textAlign: "left" }}>
+              &lt;/&gt; Code is my craft, design is my voice.
+            </span>
+            <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+              © {new Date().getFullYear()} · Built from scratch
+            </span>
+          </div>
         </div>
-
-        <div
-          style={{
-            width: "80px",
-            height: "1px",
-            background: "rgba(255,255,255,0.08)",
-          }}
-        />
-
-        <p
-          style={{
-            color: "var(--text-muted)",
-            fontSize: "0.85rem",
-            textAlign: "center",
-          }}
-        >
-          © {new Date().getFullYear()} Kamlesh Prajapati. Crafted with{" "}
-          <span style={{ color: "#fbbf24" }}>♥</span> and code.
-        </p>
-      </div>
+      </footer>
 
       {showBackToTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="Back to top"
-          style={{
-            position: "fixed",
-            bottom: "32px",
-            right: "32px",
-            width: "48px",
-            height: "48px",
-            borderRadius: "12px",
-            background: "rgba(251, 191, 36, 0.15)",
-            border: "1px solid rgba(251, 191, 36, 0.3)",
-            color: "#fbbf24",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 100,
-            transition: "all 0.3s ease",
-            animation: "fadeInUp 0.3s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(251, 191, 36, 0.25)";
-            e.currentTarget.style.transform = "translateY(-4px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(251, 191, 36, 0.15)";
-            e.currentTarget.style.transform = "translateY(0)";
-          }}
+          className="back-to-top"
         >
           <IconChevronUp />
         </button>
       )}
-    </footer>
+    </>
   );
 }

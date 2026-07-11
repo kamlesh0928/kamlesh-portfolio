@@ -3,129 +3,121 @@
 import { useState, useEffect } from "react";
 import { IconMenu, IconX } from "./icons";
 
-export const NAV_LINKS = [
+const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
+  { label: "Work", href: "#work" },
   { label: "Resume", href: "#resume" },
   { label: "Contact", href: "#contact" },
 ];
 
-export function Navbar() {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-
+      setScrolled(window.scrollY > 40);
       const sections = NAV_LINKS.map((l) => l.href.replace("#", ""));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 120) {
+        if (el && el.getBoundingClientRect().top <= 140) {
           setActiveSection(sections[i]);
           break;
         }
       }
     };
     window.addEventListener("scroll", handleScroll);
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <nav
-      id="navbar"
+      className="navbar"
       style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        padding: scrolled ? "12px 24px" : "20px 24px",
-        background: scrolled ? "rgba(5, 5, 5, 0.85)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
-        transition: "all 0.3s ease",
+        background: scrolled ? "rgba(3, 3, 4, 0.82)" : "transparent",
+        backdropFilter: scrolled ? "blur(18px)" : "none",
+        borderBottom: scrolled
+          ? "1px solid var(--border-subtle)"
+          : "1px solid transparent",
       }}
     >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <div className="nav-inner">
         <a
           href="#home"
+          className="gradient-text-static"
           style={{
-            fontSize: "1.5rem",
+            fontFamily: "var(--font-display)",
+            fontSize: "1.3rem",
             fontWeight: 700,
             textDecoration: "none",
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.02em",
           }}
-          className="gradient-text-static"
         >
-          K<span style={{ color: "#f5f5f5" }}>.</span>
+          KP<span style={{ color: "var(--signal-400)" }}>.</span>
         </a>
 
         <div
           className="nav-desktop"
-          style={{
-            gap: "8px",
-            alignItems: "center",
-          }}
+          style={{ gap: "4px", alignItems: "center" }}
         >
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              style={{
-                padding: "8px 16px",
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                color:
-                  activeSection === link.href.replace("#", "")
-                    ? "#fbbf24"
-                    : "#a0a0a0",
-                textDecoration: "none",
-                borderRadius: "8px",
-                transition: "all 0.3s ease",
-                background:
-                  activeSection === link.href.replace("#", "")
-                    ? "rgba(251, 191, 36, 0.08)"
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.href.replace("#", "");
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                className="nav-link"
+                style={{
+                  color: isActive
+                    ? "var(--violet-400)"
+                    : "var(--text-secondary)",
+                  background: isActive
+                    ? "rgba(167, 139, 250, 0.08)"
                     : "transparent",
-              }}
-              onMouseEnter={(e) => {
-                if (activeSection !== link.href.replace("#", "")) {
-                  e.currentTarget.style.color = "#f5f5f5";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeSection !== link.href.replace("#", "")) {
-                  e.currentTarget.style.color = "#a0a0a0";
-                  e.currentTarget.style.background = "transparent";
-                }
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive)
+                    e.currentTarget.style.color = "var(--text-primary)";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive)
+                    e.currentTarget.style.color = "var(--text-secondary)";
+                }}
+              >
+                {isActive ? "> " : ""}
+                {link.label}
+              </a>
+            );
+          })}
+          <a
+            href="#contact"
+            className="btn btn-primary"
+            style={{
+              padding: "10px 20px",
+              marginLeft: "12px",
+              fontSize: "0.82rem",
+            }}
+          >
+            Hire Me
+          </a>
         </div>
 
         <button
           className="nav-mobile-toggle"
           onClick={() => setMobileOpen(!mobileOpen)}
           style={{
-            background: "none",
-            border: "none",
-            color: "#f5f5f5",
+            background: "rgba(255,255,255,0.03)",
+            border: "1px solid var(--border-subtle)",
+            borderRadius: "10px",
+            color: "var(--text-primary)",
             cursor: "pointer",
             padding: "8px",
+            alignItems: "center",
+            justifyContent: "center",
           }}
           aria-label="Toggle menu"
         >
@@ -135,42 +127,42 @@ export function Navbar() {
 
       {mobileOpen && (
         <div
+          className="animate-fade-in"
           style={{
-            position: "absolute",
-            top: "100%",
-            left: 0,
-            right: 0,
-            background: "rgba(5, 5, 5, 0.95)",
+            background: "rgba(3, 3, 4, 0.97)",
             backdropFilter: "blur(20px)",
-            borderBottom: "1px solid rgba(255,255,255,0.06)",
-            padding: "16px 24px",
+            borderBottom: "1px solid var(--border-subtle)",
+            padding: "12px 24px 20px",
             display: "flex",
             flexDirection: "column",
-            gap: "4px",
+            gap: "2px",
           }}
-          className="animate-fade-in"
         >
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
+              className="nav-link"
               style={{
-                padding: "12px 16px",
-                fontSize: "0.95rem",
-                fontWeight: 500,
                 color:
                   activeSection === link.href.replace("#", "")
-                    ? "#fbbf24"
-                    : "#a0a0a0",
-                textDecoration: "none",
-                borderRadius: "8px",
-                transition: "all 0.3s ease",
+                    ? "var(--violet-400)"
+                    : "var(--text-secondary)",
+                padding: "13px 14px",
               }}
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={() => setMobileOpen(false)}
+            className="btn btn-primary"
+            style={{ justifyContent: "center", marginTop: "10px" }}
+          >
+            Hire Me
+          </a>
         </div>
       )}
     </nav>

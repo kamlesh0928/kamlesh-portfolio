@@ -1,332 +1,215 @@
 "use client";
 
 import { AnimatedSection } from "./AnimatedSection";
-import { IconDownload, IconBriefcase, IconGraduationCap } from "./icons";
+import {
+  IconDownload,
+  IconArrowUpRight,
+  IconBriefcase,
+  IconGraduationCap,
+} from "./icons";
 
-export function ResumeSection() {
-  const experience = [
-    {
-      role: "Full Stack Developer",
-      company: "Freelance / Open Source",
-      period: "2024 — Present",
-      description:
-        "Building full-stack web applications for clients and contributing to open-source projects. Specializing in React, Next.js, and Node.js ecosystems.",
-      highlights: ["React & Next.js", "Node.js APIs", "MongoDB & PostgreSQL"],
-    },
-    {
-      role: "Frontend Developer Intern",
-      company: "Tech Startup",
-      period: "2023 — 2024",
-      description:
-        "Developed responsive user interfaces and collaborated with design teams to implement modern web experiences with optimal performance.",
-      highlights: [
-        "UI/UX Implementation",
-        "Performance Optimization",
-        "Agile Development",
-      ],
-    },
-  ];
+const EXPERIENCE = [
+  {
+    period: "2024 — PRESENT",
+    title: "Freelance Full Stack Developer",
+    org: "Self-employed",
+    desc: "Designing and building web applications for clients across e-commerce, SaaS and internal tooling — from initial architecture to deployment.",
+    icon: <IconBriefcase />,
+  },
+  {
+    period: "2023 — 2024",
+    title: "Full Stack Development",
+    org: "Independent Projects",
+    desc: "Shipped multiple full stack products covering real-time systems, AI integrations and e-commerce, focused on performance and clean architecture.",
+    icon: <IconBriefcase />,
+  },
+  {
+    period: "2021 — 2023",
+    title: "Computer Science Fundamentals",
+    org: "Education",
+    desc: "Built a strong foundation in data structures, algorithms and system design that underpins how I approach every project.",
+    icon: <IconGraduationCap />,
+  },
+];
 
-  const education = [
-    {
-      degree: "Bachelor of Technology",
-      school: "Computer Science & Engineering",
-      period: "2021 — 2025",
-      description:
-        "Focused on software engineering, data structures, algorithms, and full-stack web development. Active member of the coding club and hackathon participant.",
-    },
-  ];
+const PROCESS = [
+  {
+    step: "01",
+    title: "Discover",
+    desc: "Understanding goals, users and constraints before any design work begins.",
+  },
+  {
+    step: "02",
+    title: "Design",
+    desc: "Wireframes and visual direction that communicate intent clearly.",
+  },
+  {
+    step: "03",
+    title: "Develop",
+    desc: "Clean, scalable code with testing built in from the start.",
+  },
+  {
+    step: "04",
+    title: "Deliver",
+    desc: "Deployment, monitoring and a handover you can actually maintain.",
+  },
+];
 
+export default function ResumeSection() {
   return (
-    <section id="resume" className="section bg-grid">
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <AnimatedSection className="text-center">
-          <p
-            style={{
-              color: "#fbbf24",
-              fontSize: "0.85rem",
-              fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "0.15em",
-              marginBottom: "8px",
-            }}
-          >
-            My Journey
-          </p>
-          <h2 className="section-title">
-            Resume & <span className="gradient-text-static">Experience</span>
-          </h2>
-          <div className="section-divider" />
-          <p className="section-subtitle">
-            My professional journey and educational background that shaped my
-            career.
-          </p>
-        </AnimatedSection>
-
-        <div style={{ textAlign: "center", marginBottom: "48px" }}>
-          <AnimatedSection className="text-center">
-            <a
-              href="#"
-              className="glow-btn"
-              style={{ display: "inline-flex" }}
-              onClick={(e) => {
-                e.preventDefault();
-                alert(
-                  "Add your resume PDF to /public/resume.pdf and update this link!",
-                );
-              }}
-            >
+    <section
+      id="resume"
+      className="section"
+      style={{ background: "var(--bg-secondary)" }}
+    >
+      <div className="shell">
+        <div className="section-head-row">
+          <AnimatedSection>
+            <div className="eyebrow">Experience</div>
+            <h2 className="section-heading">
+              A track record built one shipped project at a time.
+            </h2>
+          </AnimatedSection>
+          <AnimatedSection animation="animate-fade-in" className="delay-200">
+            <a href="/resume.pdf" download className="btn btn-ghost">
               <IconDownload />
-              Download Resume
+              Download Full Resume
             </a>
           </AnimatedSection>
         </div>
 
         <div
-          className="grid-resume"
           style={{
-            gap: "48px",
+            display: "grid",
+            gridTemplateColumns: "1.2fr 0.8fr",
+            gap: "64px",
+            marginBottom: "80px",
           }}
+          className="resume-grid"
         >
-          <AnimatedSection animation="animate-slide-left">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                marginBottom: "32px",
-              }}
-            >
-              <div
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "12px",
-                  background: "rgba(251, 191, 36, 0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#fbbf24",
-                }}
-              >
-                <IconBriefcase />
-              </div>
-              <h3 style={{ fontSize: "1.3rem", fontWeight: 700 }}>
-                Experience
-              </h3>
-            </div>
-
-            <div style={{ position: "relative", paddingLeft: "32px" }}>
-              <div className="timeline-line" />
-              {experience.map((exp, i) => (
-                <div
-                  key={i}
-                  style={{
-                    marginBottom: i < experience.length - 1 ? "32px" : 0,
-                    position: "relative",
-                  }}
-                >
-                  <div
-                    className="timeline-dot"
-                    style={{
-                      position: "absolute",
-                      left: "-37px",
-                      top: "6px",
-                    }}
-                  />
-                  <div className="glass-card" style={{ padding: "24px" }}>
-                    <span
-                      style={{
-                        color: "#fbbf24",
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        display: "block",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {exp.period}
-                    </span>
-                    <h4
-                      style={{
-                        fontSize: "1.1rem",
-                        fontWeight: 700,
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {exp.role}
-                    </h4>
-                    <p
-                      style={{
-                        color: "var(--text-muted)",
-                        fontSize: "0.9rem",
-                        marginBottom: "12px",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {exp.company}
-                    </p>
-                    <p
-                      style={{
-                        color: "var(--text-secondary)",
-                        fontSize: "0.9rem",
-                        lineHeight: 1.7,
-                        marginBottom: "12px",
-                      }}
-                    >
-                      {exp.description}
-                    </p>
-                    <div
-                      style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}
-                    >
-                      {exp.highlights.map((h) => (
-                        <span
-                          key={h}
-                          className="skill-tag"
-                          style={{ fontSize: "0.75rem", padding: "4px 10px" }}
-                        >
-                          {h}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+          <AnimatedSection>
+            <div className="timeline">
+              {EXPERIENCE.map((item) => (
+                <div className="timeline-item" key={item.title}>
+                  <span className="timeline-dot" />
+                  <div className="timeline-period">{item.period}</div>
+                  <div className="timeline-title">{item.title}</div>
+                  <div className="timeline-org">{item.org}</div>
+                  <p className="timeline-desc">{item.desc}</p>
                 </div>
               ))}
             </div>
           </AnimatedSection>
 
           <AnimatedSection animation="animate-slide-right">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                marginBottom: "32px",
-              }}
-            >
+            <div className="panel panel-pad">
               <div
                 style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "12px",
-                  background: "rgba(251, 191, 36, 0.1)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#fbbf24",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.72rem",
+                  color: "var(--text-muted)",
+                  letterSpacing: "0.06em",
+                  marginBottom: "24px",
                 }}
               >
-                <IconGraduationCap />
+                HOW I WORK
               </div>
-              <h3 style={{ fontSize: "1.3rem", fontWeight: 700 }}>Education</h3>
-            </div>
-
-            <div style={{ position: "relative", paddingLeft: "32px" }}>
-              <div className="timeline-line" />
-              {education.map((edu, i) => (
-                <div key={i} style={{ position: "relative" }}>
-                  <div
-                    className="timeline-dot"
-                    style={{
-                      position: "absolute",
-                      left: "-37px",
-                      top: "6px",
-                    }}
-                  />
-                  <div className="glass-card" style={{ padding: "24px" }}>
-                    <span
-                      style={{
-                        color: "#fbbf24",
-                        fontSize: "0.8rem",
-                        fontWeight: 600,
-                        display: "block",
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {edu.period}
-                    </span>
-                    <h4
-                      style={{
-                        fontSize: "1.1rem",
-                        fontWeight: 700,
-                        marginBottom: "4px",
-                      }}
-                    >
-                      {edu.degree}
-                    </h4>
-                    <p
-                      style={{
-                        color: "var(--text-muted)",
-                        fontSize: "0.9rem",
-                        marginBottom: "12px",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {edu.school}
-                    </p>
-                    <p
-                      style={{
-                        color: "var(--text-secondary)",
-                        fontSize: "0.9rem",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {edu.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: "48px" }}>
-              <h4
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  color: "var(--text-secondary)",
-                  marginBottom: "16px",
-                }}
-              >
-                Certifications & Achievements
-              </h4>
               <div
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: "12px",
+                  gap: "22px",
                 }}
               >
-                {[
-                  "Full Stack Web Development — Udemy",
-                  "React & Next.js Advanced — Coursera",
-                  "AWS Cloud Practitioner — Amazon",
-                  "HackerRank Problem Solving (Gold)",
-                ].map((cert) => (
-                  <div
-                    key={cert}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      padding: "12px 16px",
-                      background: "rgba(255,255,255,0.02)",
-                      borderRadius: "10px",
-                      border: "1px solid var(--border-subtle)",
-                      fontSize: "0.9rem",
-                      color: "var(--text-secondary)",
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    <span style={{ color: "#fbbf24", fontSize: "1.1rem" }}>
-                      ✦
+                {PROCESS.map((step) => (
+                  <div key={step.step} style={{ display: "flex", gap: "16px" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.78rem",
+                        color: "var(--signal-400)",
+                        paddingTop: "2px",
+                      }}
+                    >
+                      {step.step}
                     </span>
-                    {cert}
+                    <div>
+                      <div
+                        style={{
+                          fontWeight: 700,
+                          fontSize: "0.92rem",
+                          color: "var(--text-primary)",
+                          marginBottom: "4px",
+                        }}
+                      >
+                        {step.title}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "0.82rem",
+                          color: "var(--text-muted)",
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        {step.desc}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
           </AnimatedSection>
         </div>
+
+        <AnimatedSection animation="animate-scale-in">
+          <div className="cta-panel">
+            <div style={{ position: "relative", zIndex: 1 }}>
+              <div className="eyebrow" style={{ justifyContent: "center" }}>
+                Open to Work
+              </div>
+              <h2
+                className="section-heading"
+                style={{
+                  margin: "0 auto",
+                  maxWidth: "620px",
+                  textAlign: "center",
+                }}
+              >
+                Have a project in mind, or a role to fill? Let&apos;s build it
+                together.
+              </h2>
+              <div
+                style={{
+                  display: "flex",
+                  gap: "14px",
+                  justifyContent: "center",
+                  marginTop: "36px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <a href="#contact" className="btn btn-primary">
+                  Start a Project
+                  <span className="btn-icon-box">
+                    <IconArrowUpRight />
+                  </span>
+                </a>
+                <a
+                  href="mailto:kamleshprajapati0928@gmail.com"
+                  className="btn btn-ghost"
+                >
+                  Email Me Directly
+                </a>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .resume-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
