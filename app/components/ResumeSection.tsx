@@ -71,7 +71,11 @@ export default function ResumeSection() {
             </h2>
           </AnimatedSection>
           <AnimatedSection animation="animate-fade-in" className="delay-200">
-            <a href="/resume.pdf" download className="btn btn-ghost">
+            <a
+              href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
+              download
+              className="btn btn-ghost"
+            >
               <IconDownload />
               Download Full Resume
             </a>

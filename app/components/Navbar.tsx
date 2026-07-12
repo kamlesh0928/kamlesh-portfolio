@@ -46,20 +46,7 @@ export default function Navbar() {
       }}
     >
       <div className="nav-inner">
-        <a
-          href="#home"
-          className="gradient-text-static"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "1.3rem",
-            fontWeight: 700,
-            textDecoration: "none",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          KP<span style={{ color: "var(--signal-400)" }}>.</span>
-        </a>
-
+        <div></div>
         <div
           className="nav-desktop"
           style={{ gap: "4px", alignItems: "center" }}
