@@ -9,26 +9,26 @@ const HeroScene = dynamic(() => import("./three/HeroScene"), {
   loading: () => null,
 });
 
-const STATS = [
-  { number: "2+", label: "Years Experience" },
-  { number: "5+", label: "Projects Shipped" },
-  { number: "10+", label: "Technologies" },
-  { number: "100%", label: "Client Focused" },
-];
-
 const STACK = [
   "JAVA",
   "PYTHON",
-  "REACT.JS",
-  "NEXT.JS",
   "JAVASCRIPT",
   "TYPESCRIPT",
+  "DATA STRUCTURES AND ALGORITHMS",
+  "OOPS",
   "NODE.JS",
+  "REACT.JS",
+  "NEXT.JS",
+  "FLASK",
   "TAILWIND",
+  "MYSQL",
   "MONGODB",
-  "FIREBASE",
+  "POSTGRESQL",
   "GIT",
   "GITHUB",
+  "DOCKER",
+  "KUBERNETES",
+  "CI/CD",
 ];
 
 export default function HeroSection() {
@@ -58,9 +58,9 @@ export default function HeroSection() {
                 marginTop: "28px",
               }}
             >
-              I build fast, reliable web applications end-to-end — from system
-              architecture and APIs to interfaces people enjoy using. Currently
-              taking on select freelance projects and full-time opportunities.
+              I develop efficient and trustworthy web apps from start to finish,
+              beginning with system architecture, APIs, and working all the way
+              up to interfaces with which users genuinely fall in love with.
             </p>
 
             <div
@@ -80,19 +80,14 @@ export default function HeroSection() {
               <a href="#work" className="btn btn-ghost">
                 View Work
               </a>
-              <a href="/resume.pdf" download className="btn btn-ghost">
+              <a
+                href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
+                download
+                className="btn btn-ghost"
+              >
                 <IconDownload />
                 Resume
               </a>
-            </div>
-
-            <div className="hero-stats-row">
-              {STATS.map((stat) => (
-                <div key={stat.label}>
-                  <div className="hero-stat-number">{stat.number}</div>
-                  <div className="hero-stat-label">{stat.label}</div>
-                </div>
-              ))}
             </div>
           </AnimatedSection>
 
