@@ -7,17 +7,17 @@ const SKILL_GROUPS = [
   {
     title: "Frontend",
     skills: [
-      { name: "React / Next.js", value: 92 },
-      { name: "TypeScript", value: 85 },
+      { name: "React.js / Next.js", value: 92 },
+      { name: "JavaScript / TypeScript", value: 85 },
       { name: "Tailwind CSS", value: 90 },
     ],
   },
   {
     title: "Backend",
     skills: [
-      { name: "Node.js / Express", value: 84 },
+      { name: "Node.js", value: 84 },
       { name: "REST & API Design", value: 88 },
-      { name: "MongoDB / Firebase", value: 80 },
+      { name: "MongoDB", value: 80 },
     ],
   },
 ];
@@ -25,18 +25,23 @@ const SKILL_GROUPS = [
 const TOOLKIT = [
   "HTML5",
   "CSS3",
+  "Java",
+  "Python",
   "JavaScript",
   "TypeScript",
-  "React",
+  "React.js",
   "Next.js",
   "Node.js",
-  "Express",
+  "Express.js",
+  "MySQL",
   "MongoDB",
-  "Firebase",
+  "PostgreSQL",
   "Tailwind CSS",
   "Git & GitHub",
   "REST APIs",
-  "Figma",
+  "Docker",
+  "Kubernetes",
+  "CI/CD",
   "Vercel",
   "VS Code",
 ];
@@ -104,8 +109,8 @@ export default function SkillsSection() {
           </AnimatedSection>
           <AnimatedSection animation="animate-fade-in" className="delay-200">
             <p className="section-sub" style={{ margin: 0 }}>
-              Tools I reach for daily, and the proficiency behind each one —
-              measured by what I&apos;ve shipped, not certificates.
+              Tools and technologies I use to build modern web applications,
+              from frontend to backend, and everything in between.
             </p>
           </AnimatedSection>
         </div>

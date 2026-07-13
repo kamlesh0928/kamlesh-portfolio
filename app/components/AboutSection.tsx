@@ -7,12 +7,12 @@ const SERVICES = [
   {
     icon: <IconLayout />,
     title: "Web Design",
-    desc: "Interfaces engineered around clarity, hierarchy and conversion — not just aesthetics.",
+    desc: "Interfaces that are intuitive, accessible, and visually appealing, designed to delight users.",
   },
   {
     icon: <IconCode />,
     title: "Full Stack Development",
-    desc: "Production-grade apps with React, Next.js and Node.js, built to scale from day one.",
+    desc: "Production-grade apps with React.js, Next.js and Node.js, built to scale from day one.",
   },
   {
     icon: <IconTarget />,
@@ -44,10 +44,12 @@ export default function AboutSection() {
               I build products, not just pages.
             </h2>
             <p className="section-sub">
-              I&apos;m Kamlesh Prajapati, a full stack developer based in India.
-              I partner with founders, teams and businesses to turn ideas into
-              polished, reliable software — handling everything from the
-              database schema to the last pixel in the UI.
+              I&apos;m Kamlesh Prajapati, a Full Stack Developer based in India.
+              I build fast, scalable, and user-friendly products that solve
+              real-world problems. I handle everything from backend architecture
+              to frontend design, ensuring a seamless experience for users. My
+              goal is to create products that not only look good but also
+              perform exceptionally well.
             </p>
 
             <div
@@ -59,8 +61,8 @@ export default function AboutSection() {
               }}
             >
               {[
-                "2+ years shipping production web applications",
-                "End-to-end ownership — architecture through deployment",
+                "1 year shipping production web applications",
+                "End-to-end ownership architecture through deployment",
                 "Clear communication, honest timelines, no surprises",
               ].map((point) => (
                 <div
@@ -92,14 +94,6 @@ export default function AboutSection() {
                 </div>
               ))}
             </div>
-
-            <a
-              href="#contact"
-              className="btn btn-ghost"
-              style={{ marginTop: "36px" }}
-            >
-              Let&apos;s talk about your project
-            </a>
           </AnimatedSection>
 
           <div
