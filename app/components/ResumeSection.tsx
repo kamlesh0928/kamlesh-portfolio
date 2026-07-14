@@ -10,25 +10,18 @@ import {
 
 const EXPERIENCE = [
   {
-    period: "2024 — PRESENT",
+    period: "Mar 2026 - June 2026",
     title: "Freelance Full Stack Developer",
-    org: "Self-employed",
-    desc: "Designing and building web applications for clients across e-commerce, SaaS and internal tooling — from initial architecture to deployment.",
+    org: "Technavyug Pvt. Ltd.",
+    desc: "Developed Full Stack production platform that combines a Learning Management System (LMS), E-commerce, and Content Management System (CMS). Users can purchase courses, products, and services through a unified platform, while administrators manage content, users, orders, and learning activities from a centralized dashboard.",
     icon: <IconBriefcase />,
   },
   {
-    period: "2023 — 2024",
-    title: "Full Stack Development",
-    org: "Independent Projects",
-    desc: "Shipped multiple full stack products covering real-time systems, AI integrations and e-commerce, focused on performance and clean architecture.",
+    period: "May 2025 - Aug 2025",
+    title: "Full Stack Developer Intern",
+    org: "Nextute EdTch Pvt. Ltd.",
+    desc: "Developed the complete backend infrastructure from scratch, designing scalable REST APIs and database architecture for a production-ready application. Built the backend using Node.js, Express.js, PostgreSQL, and Prisma ORM, optimized database performance, and collaborated with a 7+ member frontend team to deliver features through an Agile development workflow.",
     icon: <IconBriefcase />,
-  },
-  {
-    period: "2021 — 2023",
-    title: "Computer Science Fundamentals",
-    org: "Education",
-    desc: "Built a strong foundation in data structures, algorithms and system design that underpins how I approach every project.",
-    icon: <IconGraduationCap />,
   },
 ];
 
