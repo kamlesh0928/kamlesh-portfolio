@@ -2,9 +2,10 @@
 
 import dynamic from "next/dynamic";
 import { AnimatedSection } from "./AnimatedSection";
+import Magnetic from "./Magnetic";
 import { IconArrowUpRight, IconDownload } from "./icons";
 
-const HeroScene = dynamic(() => import("./three/HeroScene"), {
+const FrameSequenceHero = dynamic(() => import("./frames/FrameSequenceHero"), {
   ssr: false,
   loading: () => null,
 });
@@ -71,27 +72,34 @@ export default function HeroSection() {
                 flexWrap: "wrap",
               }}
             >
-              <a href="#contact" className="btn btn-primary">
-                Hire Me
-                <span className="btn-icon-box">
-                  <IconArrowUpRight />
-                </span>
-              </a>
-              <a href="#work" className="btn btn-ghost">
-                View Work
-              </a>
-              <a
-                href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
-                download
-                className="btn btn-ghost"
-              >
-                <IconDownload />
-                Resume
-              </a>
+              <Magnetic>
+                <a href="#contact" className="btn btn-primary">
+                  Hire Me
+                  <span className="btn-icon-box">
+                    <IconArrowUpRight />
+                  </span>
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <a href="#work" className="btn btn-ghost">
+                  View Work
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <a
+                  href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-ghost"
+                >
+                  <IconDownload />
+                  Resume
+                </a>
+              </Magnetic>
             </div>
           </AnimatedSection>
 
-          {/* Right: 3D scene */}
+          {/* Right: interactive frame-sequence visual */}
           <AnimatedSection animation="animate-slide-right">
             <div className="hero-scene-frame">
               <div
@@ -143,16 +151,16 @@ export default function HeroSection() {
                     background: "var(--signal-400)",
                   }}
                 />
-                NODE_CORE.OBJ
-              </div>
-              <div
-                className="hero-scene-tag"
-                style={{ bottom: "24px", right: "40px" }}
-              >
-                RENDER: WEBGL · REALTIME
+                SEQUENCE_CORE
               </div>
 
-              <HeroScene />
+              <FrameSequenceHero
+                framePath="/frames/hero"
+                frameCount={60}
+                padLength={4}
+                extension="webp"
+                fps={24}
+              />
             </div>
           </AnimatedSection>
         </div>

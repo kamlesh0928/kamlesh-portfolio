@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Magnetic from "./Magnetic";
 import { IconMenu, IconX } from "./icons";
 
 const NAV_LINKS = [
@@ -46,7 +47,20 @@ export default function Navbar() {
       }}
     >
       <div className="nav-inner">
-        <div></div>
+        <a
+          href="#home"
+          className="gradient-text-static"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontSize: "1.3rem",
+            fontWeight: 700,
+            textDecoration: "none",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          KP<span style={{ color: "var(--signal-400)" }}>.</span>
+        </a>
+
         <div
           className="nav-desktop"
           style={{ gap: "4px", alignItems: "center" }}
@@ -80,17 +94,19 @@ export default function Navbar() {
               </a>
             );
           })}
-          <a
-            href="#contact"
-            className="btn btn-primary"
-            style={{
-              padding: "10px 20px",
-              marginLeft: "12px",
-              fontSize: "0.82rem",
-            }}
-          >
-            Hire Me
-          </a>
+          <Magnetic strength={0.25}>
+            <a
+              href="#contact"
+              className="btn btn-primary"
+              style={{
+                padding: "10px 20px",
+                marginLeft: "12px",
+                fontSize: "0.82rem",
+              }}
+            >
+              Hire Me
+            </a>
+          </Magnetic>
         </div>
 
         <button

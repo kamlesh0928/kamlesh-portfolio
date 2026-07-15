@@ -1,45 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* ===== Surface ===== */
   --bg-primary: #030304;
   --bg-secondary: #08080b;
   --bg-panel: #0c0c10;
   --bg-panel-hover: #121216;
-
   --text-primary: #f3f2f7;
   --text-secondary: #9a98a8;
   --text-muted: #58566a;
-
-  /* ===== Accent: Violet (primary) ===== */
   --violet-300: #c7b9fb;
   --violet-400: #a78bfa;
   --violet-500: #8b5cf6;
   --violet-600: #7c3aed;
   --violet-glow: rgba(167, 139, 250, 0.14);
   --violet-glow-strong: rgba(167, 139, 250, 0.32);
-
-  /* ===== Accent: Signal teal (data / schematic) ===== */
   --signal-300: #99f6e4;
   --signal-400: #2dd4bf;
   --signal-500: #14b8a6;
   --signal-glow: rgba(45, 212, 191, 0.16);
-
-  /* ===== Status ===== */
   --status-live: #34d399;
-
   --border-subtle: rgba(255, 255, 255, 0.07);
   --border-hover: rgba(167, 139, 250, 0.35);
   --grid-line: rgba(255, 255, 255, 0.045);
-
   --glass-bg: rgba(12, 12, 16, 0.65);
   --glass-border: rgba(255, 255, 255, 0.07);
-
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-2xl: 28px;
-
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Space Grotesk", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
@@ -1143,4 +1131,64 @@ button {
   .hide-mobile {
     display: none !important;
   }
+}
+
+/* ===== Custom cursor (desktop / fine pointer only) ===== */
+@media (pointer: fine) {
+  a,
+  button,
+  .chip,
+  .social-icon,
+  .icon-btn,
+  [data-cursor-hover] {
+    cursor: none;
+  }
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--violet-400);
+  pointer-events: none;
+  z-index: 10001;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, 0.45);
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.custom-cursor-ring.cursor-ring-active {
+  width: 54px;
+  height: 54px;
+  background: rgba(167, 139, 250, 0.08);
+  border-color: rgba(167, 139, 250, 0.7);
+}
+
+/* ===== Frame-sequence loading spinner ===== */
+.frame-loader-ring {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-top-color: var(--violet-400);
+  animation: rotateSlow 0.9s linear infinite;
 }

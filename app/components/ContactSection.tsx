@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import axios from "axios";
+import emailjs from "@emailjs/browser";
 import { AnimatedSection } from "./AnimatedSection";
+import Magnetic from "./Magnetic";
 import {
   IconGitHub,
   IconLinkedIn,
@@ -12,28 +13,47 @@ import {
   IconSend,
 } from "./icons";
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS env vars missing — see SETUP.md");
+      setStatus("error");
+      return;
+    }
+
     try {
-      setSubmitted(false);
-      e.preventDefault();
-
-      const response = axios.post("/api/send-mail", {
-        name: formData.name,
-        from: formData.email,
-        message: formData.message,
-      });
-    } catch (error: any) {
-      console.error("Failed to send email:", error.message);
-    } finally {
-      setSubmitted(true);
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        { publicKey },
+      );
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch (err) {
+      console.error("EmailJS send failed:", err);
+      setStatus("error");
     }
   };
 
@@ -114,16 +134,17 @@ export default function ContactSection() {
                       label: "Twitter",
                     },
                   ].map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="social-icon"
-                    >
-                      {social.icon}
-                    </a>
+                    <Magnetic key={social.label} strength={0.3}>
+                      <a
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="social-icon"
+                      >
+                        {social.icon}
+                      </a>
+                    </Magnetic>
                   ))}
                 </div>
               </div>
@@ -198,24 +219,59 @@ export default function ContactSection() {
                     id="contact-message"
                   />
                 </div>
+
                 <button
                   type="submit"
                   className="btn btn-primary"
+                  disabled={status === "sending"}
                   style={{
                     width: "100%",
                     justifyContent: "center",
                     padding: "16px",
+                    opacity: status === "sending" ? 0.7 : 1,
+                    cursor: status === "sending" ? "not-allowed" : "pointer",
                   }}
                 >
-                  {submitted ? (
-                    "Message Sent"
-                  ) : (
+                  {status === "sending" && "Sending..."}
+                  {status === "success" && "Message Sent ✓"}
+                  {status === "idle" && (
                     <>
                       Send Message
                       <IconSend />
                     </>
                   )}
+                  {status === "error" && "Failed — Try Again"}
                 </button>
+
+                {status === "error" && (
+                  <p
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "#f87171",
+                      textAlign: "center",
+                    }}
+                  >
+                    Something went wrong. Please email me directly at{" "}
+                    <a
+                      href="mailto:kamleshprajapati0928@gmail.com"
+                      style={{ color: "#f87171", textDecoration: "underline" }}
+                    >
+                      kamleshprajapati0928@gmail.com
+                    </a>
+                    .
+                  </p>
+                )}
+                {status === "success" && (
+                  <p
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "var(--status-live)",
+                      textAlign: "center",
+                    }}
+                  >
+                    Thanks — I&apos;ll get back to you within 24 hours.
+                  </p>
+                )}
               </form>
             </div>
           </AnimatedSection>
