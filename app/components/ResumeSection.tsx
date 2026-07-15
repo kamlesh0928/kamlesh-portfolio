@@ -1,11 +1,11 @@
 "use client";
 
 import { AnimatedSection } from "./AnimatedSection";
+import Magnetic from "./Magnetic";
 import {
   IconDownload,
   IconArrowUpRight,
   IconBriefcase,
-  IconGraduationCap,
 } from "./icons";
 
 const EXPERIENCE = [
@@ -64,14 +64,17 @@ export default function ResumeSection() {
             </h2>
           </AnimatedSection>
           <AnimatedSection animation="animate-fade-in" className="delay-200">
-            <a
-              href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
-              download
-              className="btn btn-ghost"
-            >
-              <IconDownload />
-              Download Full Resume
-            </a>
+            <Magnetic strength={0.25}>
+              <a
+                href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                <IconDownload />
+                Download Full Resume
+              </a>
+            </Magnetic>
           </AnimatedSection>
         </div>
 
@@ -184,18 +187,22 @@ export default function ResumeSection() {
                   flexWrap: "wrap",
                 }}
               >
-                <a href="#contact" className="btn btn-primary">
-                  Start a Project
-                  <span className="btn-icon-box">
-                    <IconArrowUpRight />
-                  </span>
-                </a>
-                <a
-                  href="mailto:kamleshprajapati0928@gmail.com"
-                  className="btn btn-ghost"
-                >
-                  Email Me Directly
-                </a>
+                <Magnetic>
+                  <a href="#contact" className="btn btn-primary">
+                    Start a Project
+                    <span className="btn-icon-box">
+                      <IconArrowUpRight />
+                    </span>
+                  </a>
+                </Magnetic>
+                <Magnetic strength={0.25}>
+                  <a
+                    href="mailto:kamleshprajapati0928@gmail.com"
+                    className="btn btn-ghost"
+                  >
+                    Email Me Directly
+                  </a>
+                </Magnetic>
               </div>
             </div>
           </div>
