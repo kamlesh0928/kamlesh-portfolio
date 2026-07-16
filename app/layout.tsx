@@ -1,30 +1,26 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Sora, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import AppShell from "./components/AppShell";
 
-const inter = Inter({
-  variable: "--font-inter",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
   display: "swap",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["500", "600", "700"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Kamlesh Prajapati | Full Stack Developer",
+  title: "Kamlesh Prajapati | THE_DEVELOPER_JOURNEY",
   description:
-    "Kamlesh Prajapati is a Full Stack Developer building fast, scalable web applications with React, Next.js and Node.js. Available for freelance projects and full-time roles.",
+    "Kamlesh Prajapati is a Full Stack Developer building fast, scalable web applications. Explore the developer journey through projects, skills, and experience.",
   keywords: [
     "Full Stack Developer",
     "React Developer",
@@ -32,12 +28,12 @@ export const metadata: Metadata = {
     "Node.js",
     "Portfolio",
     "Kamlesh Prajapati",
-    "Hire Developer",
+    "Developer Journey",
     "Web Developer India",
   ],
   authors: [{ name: "Kamlesh Prajapati" }],
   openGraph: {
-    title: "Kamlesh Prajapati | Full Stack Developer",
+    title: "Kamlesh Prajapati | THE_DEVELOPER_JOURNEY",
     description:
       "Full Stack Developer building fast, scalable web applications with React, Next.js and Node.js.",
     type: "website",
@@ -52,9 +48,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}
+      className={`dark ${sora.variable} ${jetbrainsMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }
