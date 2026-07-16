@@ -1,139 +1,92 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+
+const BOOT_LINES = [
+  { text: "Loading core modules...", status: "ok", delay: 300 },
+  { text: "Establishing secure connection...", status: "ok", delay: 400 },
+  { text: "Checking environment variables...", status: "ok", delay: 350 },
+  { text: "Initializing dependencies...", status: "ok", delay: 500 },
+  {
+    text: "Searching for missing semicolons... found 42",
+    status: "warn",
+    delay: 600,
+  },
+  { text: "Compiling developer_journey.tsx...", status: "ok", delay: 400 },
+  { text: "git blame -- it was you all along", status: "info", delay: 300 },
+  { text: "System Ready.", status: "done", delay: 200 },
+];
 
 export default function Loader({ onDone }: { onDone: () => void }) {
-  const [progress, setProgress] = useState(0);
+  const [visibleLines, setVisibleLines] = useState(0);
   const [hiding, setHiding] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const onDoneStable = useCallback(onDone, [onDone]);
 
   useEffect(() => {
-    let raf: number;
-    const start = performance.now();
-    const duration = 1800;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    let currentLine = 0;
 
-    const tick = (now: number) => {
-      const elapsed = now - start;
-      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
-      setProgress(pct);
-      if (pct < 100) {
-        raf = requestAnimationFrame(tick);
+    const showNext = () => {
+      if (currentLine < BOOT_LINES.length) {
+        currentLine++;
+        setVisibleLines(currentLine);
+        setProgress(Math.round((currentLine / BOOT_LINES.length) * 100));
+        timeoutId = setTimeout(showNext, BOOT_LINES[currentLine - 1].delay);
       } else {
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
           setHiding(true);
-          setTimeout(onDone, 700);
-        }, 250);
+          setTimeout(onDoneStable, 600);
+        }, 400);
       }
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [onDone]);
+
+    timeoutId = setTimeout(showNext, 500);
+    return () => clearTimeout(timeoutId);
+  }, [onDoneStable]);
+
+  const totalBlocks = 20;
+  const filledBlocks = Math.round((progress / 100) * totalBlocks);
+  const progressBar =
+    "[" +
+    "=".repeat(filledBlocks) +
+    (filledBlocks < totalBlocks ? ">" : "") +
+    " ".repeat(Math.max(0, totalBlocks - filledBlocks - 1)) +
+    "]";
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 10000,
-        background: "var(--bg-primary)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        transform: hiding ? "translateY(-100%)" : "translateY(0)",
-        transition: "transform 0.7s cubic-bezier(0.76, 0, 0.24, 1)",
-      }}
-    >
-      <div className="blueprint-grid" style={{ opacity: 0.6 }} />
+    <div className={`boot-loader ${hiding ? "boot-hiding" : ""}`}>
+      <div className="grid-bg" style={{ opacity: 0.5 }} />
+      <div
+        className="boot-terminal"
+        style={{ position: "relative", zIndex: 1 }}
+      >
+        {BOOT_LINES.slice(0, visibleLines).map((line, i) => (
+          <div className="boot-line" key={i}>
+            <span className="prompt">$</span>
+            <span>
+              {line.text}
+              {line.status === "ok" && <span className="ok"> [OK]</span>}
+              {line.status === "warn" && <span className="warn"> [WARN]</span>}
+              {line.status === "done" && <span className="ok"> _</span>}
+            </span>
+          </div>
+        ))}
 
-      <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
-        <svg
-          width="88"
-          height="88"
-          viewBox="0 0 88 88"
-          style={{ marginBottom: "28px" }}
-        >
-          <polygon
-            points="44,6 78,25 78,63 44,82 10,63 10,25"
-            fill="none"
-            stroke="var(--violet-500)"
-            strokeWidth="1.4"
-            strokeDasharray="260"
-            strokeDashoffset={260 - (260 * progress) / 100}
-            style={{ transition: "stroke-dashoffset 0.1s linear" }}
-          />
-          <text
-            x="44"
-            y="50"
-            textAnchor="middle"
-            fontFamily="var(--font-display)"
-            fontSize="22"
-            fontWeight={700}
-            fill="var(--text-primary)"
-          >
-            KP
-          </text>
-        </svg>
+        {visibleLines > 0 && visibleLines < BOOT_LINES.length && (
+          <div className="boot-line" style={{ marginTop: 8 }}>
+            <span className="prompt">$</span>
+            <span className="terminal-cursor" />
+          </div>
+        )}
 
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.72rem",
-            letterSpacing: "0.14em",
-            color: "var(--text-muted)",
-            marginBottom: "14px",
-          }}
-        >
-          INITIALIZING PORTFOLIO
-          <span className="loader-dots" />
-        </div>
-
-        <div
-          style={{
-            width: "220px",
-            height: "2px",
-            background: "rgba(255,255,255,0.08)",
-            borderRadius: "2px",
-            overflow: "hidden",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              width: `${progress}%`,
-              height: "100%",
-              background:
-                "linear-gradient(90deg, var(--violet-500), var(--signal-400))",
-              transition: "width 0.1s linear",
-            }}
-          />
-        </div>
-
-        <div
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "1.6rem",
-            fontWeight: 600,
-            color: "var(--text-primary)",
-            marginTop: "18px",
-          }}
-        >
-          {progress}%
+        <div className="boot-progress" style={{ marginTop: 24 }}>
+          <div style={{ marginBottom: 4, letterSpacing: "0.15em" }}>
+            {progressBar} {progress}%
+          </div>
         </div>
       </div>
-
-      <style>{`
-        .loader-dots::after {
-          content: '';
-          animation: loaderDots 1.4s steps(4, end) infinite;
-        }
-        @keyframes loaderDots {
-          0% { content: ''; }
-          25% { content: '.'; }
-          50% { content: '..'; }
-          75% { content: '...'; }
-          100% { content: ''; }
-        }
-      `}</style>
     </div>
   );
 }
