@@ -74,7 +74,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <button className="sidebar-reboot-btn" onClick={handleReboot}>
             EXECUTE_REBOOT
           </button>
-          <div style={{ borderTop: "1px solid var(--outline-variant)", paddingTop: 8, marginTop: 8 }}>
+          <div
+            style={{
+              borderTop: "1px solid var(--outline-variant)",
+              paddingTop: 8,
+              marginTop: 8,
+            }}
+          >
             <a href="#" className="sidebar-bottom-link">
               <IconSettings />
               SETTINGS

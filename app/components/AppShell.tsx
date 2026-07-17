@@ -31,18 +31,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           transition: "opacity 0.5s ease 0.1s",
         }}
       >
-        <Sidebar
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-        />
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <div className="main-area">
           <TopBar
             onMenuToggle={() => setSidebarOpen(!sidebarOpen)}
             menuOpen={sidebarOpen}
           />
-          <main className="page-content page-enter">
-            {children}
-          </main>
+          <main className="page-content page-enter">{children}</main>
           <Footer />
         </div>
       </div>
