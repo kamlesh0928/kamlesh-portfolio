@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { AnimatedSection } from "../components/AnimatedSection";
-import TerminalWindow, { TerminalLine, TerminalCursor } from "../components/TerminalWindow";
-import { NpmInstall, MissingSemicolon } from "../components/DevLifeInterstitial";
+import TerminalWindow, {
+  TerminalLine,
+  TerminalCursor,
+} from "../components/TerminalWindow";
+import { MissingSemicolon } from "../components/DevLifeInterstitial";
 
 const SKILL_GROUPS = [
   {
@@ -27,16 +30,33 @@ const SKILL_GROUPS = [
     skills: [
       { name: "MySQL / PostgreSQL", value: 80, status: "STABLE" },
       { name: "MongoDB", value: 82, status: "STABLE" },
-      { name: "Docker / Kubernetes", value: 70, status: "LOADING" },
+      { name: "Docker / Kubernetes", value: 40, status: "LOADING" },
     ],
   },
 ];
 
 const TOOLKIT = [
-  "HTML5", "CSS3", "Java", "Python", "JavaScript", "TypeScript",
-  "React.js", "Next.js", "Node.js", "Express.js", "MySQL", "MongoDB",
-  "PostgreSQL", "Tailwind CSS", "Git", "GitHub", "REST APIs",
-  "Docker", "Kubernetes", "CI/CD", "Vercel", "VS Code"
+  "JavaScript",
+  "TypeScript",
+  "Java",
+  "Python",
+  "Data Structures & Algorithms",
+  "HTML5",
+  "CSS3",
+  "React.js",
+  "Next.js",
+  "Node.js",
+  "Express.js",
+  "MySQL",
+  "MongoDB",
+  "PostgreSQL",
+  "Tailwind CSS",
+  "Git",
+  "GitHub",
+  "REST APIs",
+  "Docker",
+  "Kubernetes",
+  "CI/CD",
 ];
 
 const TERMINAL_LOGS = [
@@ -50,7 +70,13 @@ const TERMINAL_LOGS = [
   "> Successfully Deployed: 10+ Projects",
 ];
 
-function CicdProgressBar({ value, triggered }: { value: number; triggered: boolean }) {
+function CicdProgressBar({
+  value,
+  triggered,
+}: {
+  value: number;
+  triggered: boolean;
+}) {
   const totalSegments = 10;
   const activeSegments = Math.round((value / 100) * totalSegments);
 
@@ -94,13 +120,23 @@ export default function ModulesPage() {
       {/* Header */}
       <AnimatedSection>
         <div className="section-header">
-          <div className="text-label" style={{ color: "var(--primary-green)", marginBottom: 12 }}>
+          <div
+            className="text-label"
+            style={{ color: "var(--primary-green)", marginBottom: 12 }}
+          >
             // MODULES.bin
           </div>
           <h1 className="text-headline-lg">System Modules</h1>
-          <p className="text-body-md" style={{ color: "var(--on-surface-variant)", marginTop: 16, maxWidth: 600 }}>
-            Tools and technologies I use to build modern web applications,
-            from frontend to backend, and everything in between.
+          <p
+            className="text-body-md"
+            style={{
+              color: "var(--on-surface-variant)",
+              marginTop: 16,
+              maxWidth: 600,
+            }}
+          >
+            Tools and technologies I use to build modern web applications, from
+            frontend to backend, and everything in between.
           </p>
         </div>
       </AnimatedSection>
@@ -109,28 +145,70 @@ export default function ModulesPage() {
         {/* Left Column: Skill Bars */}
         <div>
           {SKILL_GROUPS.map((group, groupIdx) => (
-            <AnimatedSection key={group.title} className={`delay-${groupIdx * 100}`}>
+            <AnimatedSection
+              key={group.title}
+              className={`delay-${groupIdx * 100}`}
+            >
               <div style={{ marginBottom: 40 }}>
-                <div className="text-label" style={{ color: "var(--on-surface-variant)", marginBottom: 16 }}>
+                <div
+                  className="text-label"
+                  style={{
+                    color: "var(--on-surface-variant)",
+                    marginBottom: 16,
+                  }}
+                >
                   [{group.title}]
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+                <div
+                  style={{ display: "flex", flexDirection: "column", gap: 24 }}
+                >
                   {group.skills.map((skill) => (
                     <div key={skill.name}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 8 }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "flex-end",
+                          marginBottom: 8,
+                        }}
+                      >
                         <div>
-                          <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, color: "var(--on-surface)" }}>
+                          <div
+                            style={{
+                              fontFamily: "var(--font-display)",
+                              fontWeight: 600,
+                              color: "var(--on-surface)",
+                            }}
+                          >
                             {skill.name}
                           </div>
-                          <div className="text-label" style={{ color: skill.status === "OPTIMAL" ? "var(--primary-green)" : (skill.status === "COMPILING" ? "var(--tertiary-container)" : "var(--on-surface-variant)"), fontSize: 10, marginTop: 4 }}>
+                          <div
+                            className="text-label"
+                            style={{
+                              color:
+                                skill.status === "OPTIMAL"
+                                  ? "var(--primary-green)"
+                                  : skill.status === "COMPILING"
+                                    ? "var(--tertiary-container)"
+                                    : "var(--on-surface-variant)",
+                              fontSize: 10,
+                              marginTop: 4,
+                            }}
+                          >
                             Status: {skill.status}
                           </div>
                         </div>
-                        <div className="text-code" style={{ color: "var(--primary-green)" }}>
+                        <div
+                          className="text-code"
+                          style={{ color: "var(--primary-green)" }}
+                        >
                           {skill.value}%
                         </div>
                       </div>
-                      <CicdProgressBar value={skill.value} triggered={triggered} />
+                      <CicdProgressBar
+                        value={skill.value}
+                        triggered={triggered}
+                      />
                     </div>
                   ))}
                 </div>
@@ -146,12 +224,17 @@ export default function ModulesPage() {
             <TerminalWindow title="sys_logs.sh">
               {TERMINAL_LOGS.slice(0, logIndex).map((log, i) => (
                 <TerminalLine key={i} prompt={log.startsWith(">") ? ">" : ""}>
-                  <span style={{ 
-                    color: log.includes("[WARN]") ? "var(--tertiary-container)" : 
-                           log.includes("[ERROR]") ? "var(--error-red)" : 
-                           log.includes("OK") ? "var(--primary-green)" : 
-                           "var(--on-surface)" 
-                  }}>
+                  <span
+                    style={{
+                      color: log.includes("[WARN]")
+                        ? "var(--tertiary-container)"
+                        : log.includes("[ERROR]")
+                          ? "var(--error-red)"
+                          : log.includes("OK")
+                            ? "var(--primary-green)"
+                            : "var(--on-surface)",
+                    }}
+                  >
                     {log.startsWith(">") ? log.substring(1).trim() : log}
                   </span>
                 </TerminalLine>
@@ -165,15 +248,29 @@ export default function ModulesPage() {
           </AnimatedSection>
 
           {/* Full Toolkit */}
-          <AnimatedSection animation="animate-slide-right" className="delay-200">
+          <AnimatedSection
+            animation="animate-slide-right"
+            className="delay-200"
+          >
             <div className="card-terminal" style={{ padding: 24 }}>
               <div className="card-terminal-glow" />
-              <div className="text-label" style={{ color: "var(--on-surface-variant)", marginBottom: 20 }}>
+              <div
+                className="text-label"
+                style={{ color: "var(--on-surface-variant)", marginBottom: 20 }}
+              >
                 FULL_TOOLKIT.json
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 {TOOLKIT.map((tool) => (
-                  <span key={tool} className="chip-terminal" style={{ color: "var(--on-surface-variant)", borderColor: "var(--outline-variant)", background: "transparent" }}>
+                  <span
+                    key={tool}
+                    className="chip-terminal"
+                    style={{
+                      color: "var(--on-surface-variant)",
+                      borderColor: "var(--outline-variant)",
+                      background: "transparent",
+                    }}
+                  >
                     {tool}
                   </span>
                 ))}
@@ -184,7 +281,6 @@ export default function ModulesPage() {
       </div>
 
       {/* Dev Life Moments */}
-      <NpmInstall />
       <div style={{ marginTop: 24 }}>
         <MissingSemicolon />
       </div>

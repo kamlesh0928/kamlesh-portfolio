@@ -1,6 +1,12 @@
 "use client";
 
-import { IconTerminalIcon, IconSensors, IconPower, IconMenu, IconX } from "./icons";
+import {
+  IconTerminalIcon,
+  IconSensors,
+  IconPower,
+  IconMenu,
+  IconX,
+} from "./icons";
 
 interface TopBarProps {
   onMenuToggle: () => void;

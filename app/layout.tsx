@@ -30,6 +30,9 @@ export const metadata: Metadata = {
     "Kamlesh Prajapati",
     "Developer Journey",
     "Web Developer India",
+    "Software Engineer",
+    "Unique Portfolio",
+    "Animated Portfolio",
   ],
   authors: [{ name: "Kamlesh Prajapati" }],
   openGraph: {

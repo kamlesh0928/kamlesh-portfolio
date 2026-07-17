@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatedSection } from "../components/AnimatedSection";
-import { IconGitHub, IconExternalLink, IconBranch } from "../components/icons";
-import { WorksOnMyMachine, MergeConflict } from "../components/DevLifeInterstitial";
+import { IconExternalLink, IconBranch } from "../components/icons";
+import { WorksOnMyMachine } from "../components/DevLifeInterstitial";
 
 const PROJECTS = [
   {
@@ -15,7 +15,7 @@ const PROJECTS = [
     github: "https://github.com/kamlesh0928/aidentify",
     live: "https://aidentify-frontend.vercel.app/",
     description:
-      "A platform leveraging AI to identify and analyze images. Built with Next.js for a seamless frontend experience and Python for backend processing, integrating Google Gemini for advanced image recognition capabilities.",
+      "A platform leveraging AI to identify whether image, video or audio is AI generated or not. Built with Next.js for a seamless frontend experience and Python for backend processing, integrating Google Gemini for advanced analysis capabilities.",
   },
   {
     hash: "f4e5d6c",
@@ -27,7 +27,7 @@ const PROJECTS = [
     github: "https://github.com/kamlesh0928/code-parivartan",
     live: "https://www.linkedin.com/posts/kamlesh5242_ai-agenticai-codemodernization-activity-7378337340907315200-KKbp/?utm_source=social_share_send&utm_medium=android_app&rcm=ACoAAEZnC4QBSZDCKkS0VmrXEZQJO2JiVqM_l1A&utm_campaign=whatsapp",
     description:
-      "An Agentic AI application designed for code modernization and transformation. Utilizes Python for complex logic and Next.js for the user interface, with Redis for efficient caching and state management.",
+      "An Agentic AI application designed for code modernization and transformation. It uses Python for backend processing, Next.js for the frontend interface, and Redis for efficient data caching and retrieval.",
   },
   {
     hash: "b9a8c7d",
@@ -39,7 +39,7 @@ const PROJECTS = [
     github: "https://github.com/kamlesh0928/finora-frontend",
     live: "https://github.com/kamlesh0928/finora-frontend",
     description:
-      "A FinTech mobile application built using Flutter for cross-platform support. Features a Python backend to handle secure transactions and financial data processing.",
+      "A FinTech mobile application developed to understand and manage personal finances. Built with Flutter for cross-platform mobile development, Dart for application logic, and Python for backend services.",
   },
 ];
 
@@ -49,12 +49,23 @@ export default function CommitsPage() {
       {/* Header */}
       <AnimatedSection>
         <div className="section-header">
-          <div className="text-label" style={{ color: "var(--primary-green)", marginBottom: 12 }}>
+          <div
+            className="text-label"
+            style={{ color: "var(--primary-green)", marginBottom: 12 }}
+          >
             // COMMITS.git
           </div>
           <h1 className="text-headline-lg">Selected Work</h1>
-          <p className="text-body-md" style={{ color: "var(--on-surface-variant)", marginTop: 16, maxWidth: 600 }}>
-            Projects built to solve real problems. A log of my most significant pushes to the main branch.
+          <p
+            className="text-body-md"
+            style={{
+              color: "var(--on-surface-variant)",
+              marginTop: 16,
+              maxWidth: 600,
+            }}
+          >
+            Projects built to solve real problems. A log of my most significant
+            pushes to the main branch.
           </p>
         </div>
       </AnimatedSection>
@@ -62,7 +73,10 @@ export default function CommitsPage() {
       {/* Projects Grid */}
       <div className="grid-2" style={{ marginBottom: 48 }}>
         {PROJECTS.map((project, idx) => (
-          <AnimatedSection key={project.title} className={`delay-${(idx + 1) * 100}`}>
+          <AnimatedSection
+            key={project.title}
+            className={`delay-${(idx + 1) * 100}`}
+          >
             <div className="commit-card">
               {/* Commit Header */}
               <div className="commit-card-header">
@@ -79,9 +93,17 @@ export default function CommitsPage() {
                 <div className="commit-branch">
                   <IconBranch /> {project.branch}
                 </div>
-                
-                <h3 className="text-headline-md" style={{ marginBottom: 4 }}>{project.title}</h3>
-                <div className="text-label" style={{ color: "var(--on-surface-variant)", marginBottom: 20 }}>
+
+                <h3 className="text-headline-md" style={{ marginBottom: 4 }}>
+                  {project.title}
+                </h3>
+                <div
+                  className="text-label"
+                  style={{
+                    color: "var(--on-surface-variant)",
+                    marginBottom: 20,
+                  }}
+                >
                   {project.category}
                 </div>
 
@@ -90,11 +112,25 @@ export default function CommitsPage() {
                   <img src={project.image} alt={project.title} />
                 </div>
 
-                <p className="text-code" style={{ color: "var(--on-surface-variant)", marginBottom: 24, flex: 1 }}>
+                <p
+                  className="text-code"
+                  style={{
+                    color: "var(--on-surface-variant)",
+                    marginBottom: 24,
+                    flex: 1,
+                  }}
+                >
                   {project.description}
                 </p>
 
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 24 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    flexWrap: "wrap",
+                    marginBottom: 24,
+                  }}
+                >
                   {project.tags.map((tag) => (
                     <span key={tag} className="chip-terminal">
                       {tag}
@@ -102,7 +138,14 @@ export default function CommitsPage() {
                   ))}
                 </div>
 
-                <div style={{ display: "flex", gap: 16, borderTop: "1px solid var(--outline-variant)", paddingTop: 16 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 16,
+                    borderTop: "1px solid var(--outline-variant)",
+                    paddingTop: 16,
+                  }}
+                >
                   <a
                     href={project.github}
                     target="_blank"
@@ -124,29 +167,32 @@ export default function CommitsPage() {
             </div>
           </AnimatedSection>
         ))}
+
+        {/* View More CTA placed inside grid as 4th item */}
+        <AnimatedSection className="delay-400">
+          <div
+            style={{
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: "300px",
+            }}
+          >
+            <a
+              href="https://github.com/kamlesh0928"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost-terminal"
+            >
+              VIEW_ALL_COMMITS <IconExternalLink />
+            </a>
+          </div>
+        </AnimatedSection>
       </div>
 
       {/* Interstitial */}
       <WorksOnMyMachine />
-      
-      {/* Another Interstitial for humor */}
-      <div style={{ marginTop: 48 }}>
-        <MergeConflict />
-      </div>
-
-      {/* View More CTA */}
-      <AnimatedSection className="delay-200">
-        <div style={{ textAlign: "center", marginTop: 64 }}>
-          <a
-            href="https://github.com/kamlesh0928"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ghost-terminal"
-          >
-            VIEW_ALL_COMMITS <IconExternalLink />
-          </a>
-        </div>
-      </AnimatedSection>
     </div>
   );
 }

@@ -13,7 +13,6 @@ import { IconArrowForward, IconDownload } from "./components/icons";
 const BOOT_MESSAGES = [
   "Loading core modules... [OK]",
   "Establishing secure connection... [OK]",
-  "Awaiting user input...",
   "Checking environment variables... [OK]",
   "Initializing dependencies... [OK]",
   "System Ready.",
@@ -94,7 +93,7 @@ export default function Home() {
         >
           <Magnetic>
             <Link href="/connect" className="btn-glitch">
-              <span>./RUN RESUME.SH</span>
+              <span>./RUN CONNECT.SH</span>
               <IconArrowForward />
             </Link>
           </Magnetic>
@@ -106,7 +105,7 @@ export default function Home() {
               className="btn-ghost-terminal"
             >
               <IconDownload />
-              DOWNLOAD CV
+              DOWNLOAD RESUME
             </a>
           </Magnetic>
         </div>
@@ -124,9 +123,9 @@ export default function Home() {
           }}
         >
           {[
-            { label: "PROJECTS_DEPLOYED", value: "10+" },
+            { label: "PROJECTS_DEPLOYED", value: "5+" },
             { label: "UPTIME", value: "99.9%" },
-            { label: "COMMITS", value: "500+" },
+            { label: "COMMITS", value: "600+" },
             { label: "CAFFEINE_LEVEL", value: "CRITICAL" },
           ].map((stat) => (
             <div key={stat.label} style={{ textAlign: "center" }}>
