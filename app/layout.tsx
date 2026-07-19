@@ -41,6 +41,9 @@ export const metadata: Metadata = {
       "Full Stack Developer building fast, scalable web applications with React, Next.js and Node.js.",
     type: "website",
   },
+  icons: {
+    icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23121214' rx='24'/><path d='M 25 30 L 45 50 L 25 70' fill='none' stroke='%2300e639' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/><line x1='55' y1='70' x2='80' y2='70' stroke='%2300e639' stroke-width='12' stroke-linecap='round'/></svg>",
+  },
 };
 
 export default function RootLayout({
