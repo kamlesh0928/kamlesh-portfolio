@@ -108,7 +108,6 @@ export default function CommitsPage() {
                 </div>
 
                 <div className="commit-visual">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={project.image} alt={project.title} />
                 </div>
 
