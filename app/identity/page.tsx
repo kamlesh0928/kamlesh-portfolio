@@ -170,7 +170,7 @@ export default function IdentityPage() {
           </h2>
           <div style={{ marginTop: 16 }}>
             <a
-              href="https://drive.google.com/file/d/1cw1yXTR_OQMqi7FiqcGJA7-W0zSrE0nJ/view?usp=drive_link"
+              href="https://drive.google.com/file/d/15Q-Xh4xRiEaaQIhAMWyF-FDxdUEclAPw/view"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost-terminal"
