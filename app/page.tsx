@@ -99,7 +99,7 @@ export default function Home() {
           </Magnetic>
           <Magnetic strength={0.25}>
             <a
-              href="https://drive.google.com/file/d/15Q-Xh4xRiEaaQIhAMWyF-FDxdUEclAPw/view"
+              href="https://drive.google.com/file/d/1ei3UfA9314U7TTV0NHsCJ2rG1bW1g615/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost-terminal"
